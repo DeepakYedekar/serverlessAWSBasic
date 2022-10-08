@@ -1,0 +1,25 @@
+service: hello-world
+
+
+provider:
+   name: aws
+   runtime: nodejs14.x
+   region: us-east-1
+
+
+functions:
+   hello: 
+    handler: handler.hello 
+   newFunction: 
+    handler: src/jobs/api.handler
+   getFunction:
+    handler: src/jobs/getapi.handler
+    events:
+      - http:
+          method: GET
+          path: /api/v1
+
+
+
+plugins:
+  - serverless-offline
